@@ -12,12 +12,12 @@ function Signup() {
 	const signUpWithEmailAndPassword = async (e: FormEvent) => {
 		e.preventDefault();
 		if (auth && email && password) {
-			console.log({ email, password });
+			// console.log({ email, password });
 
 			await auth.signupAction({ email, password });
 			return;
 		} else {
-			alert("Please provide valid input");
+			// alert("Please provide valid input");
 		}
 	};
 

@@ -15,7 +15,7 @@ function Login() {
 			await auth.loginAction({ email, password });
 			return;
 		} else {
-			alert("Please provide valid input");
+			// alert("Please provide valid input");
 		}
 	};
 
