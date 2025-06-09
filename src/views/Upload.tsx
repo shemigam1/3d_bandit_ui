@@ -119,8 +119,11 @@ const Upload = () => {
 			});
 			const result = await response.json();
 
+			// console.log(auth?.id);
+
 			await fetch(
 				"https://threed-bandit-backend.onrender.com/api/v1/3d/create-file",
+				// "http://localhost:1738/api/v1/3d/create-file",
 				{
 					method: "POST",
 					headers: headerData,

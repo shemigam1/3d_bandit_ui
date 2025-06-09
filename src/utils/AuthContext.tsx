@@ -75,7 +75,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 				}
 			);
 			const res = response.data;
-			// console.log(res);
+			console.log(res);
 
 			if (res) {
 				setUser(res.data.user);
