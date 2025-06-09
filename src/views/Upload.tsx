@@ -80,7 +80,7 @@ const Upload = () => {
 		setErrorMessage("");
 
 		try {
-			console.log(localStorage.getItem("site"));
+			// console.log(localStorage.getItem("site"));
 
 			// First get the signature from your backend
 			const signResponse = await fetch(
@@ -91,8 +91,8 @@ const Upload = () => {
 				}
 			);
 			const signData = await signResponse.json();
-			console.log(signData);
-			console.log(signData.data.signature);
+			// console.log(signData);
+			// console.log(signData.data.signature);
 
 			if (!signData.data.signature) {
 				throw new Error("Failed to get upload signature");
