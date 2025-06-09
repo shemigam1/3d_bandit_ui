@@ -117,6 +117,7 @@ const Upload = () => {
 				body: formData,
 				// headers: headerData,
 			});
+			const result = await response.json();
 
 			await fetch(
 				"https://threed-bandit-backend.onrender.com/api/v1/3d/create-file",
@@ -126,7 +127,7 @@ const Upload = () => {
 					body: JSON.stringify({
 						createdAt: timestamp,
 						name: selectedFile.name,
-						fileUrl: uploadResult.url,
+						fileUrl: result.url,
 						owner: auth?.id,
 					}),
 				}
@@ -136,7 +137,7 @@ const Upload = () => {
 				throw new Error(`Upload failed with status ${response.status}`);
 			}
 
-			const result = await response.json();
+			// const result = await response.json();
 			setUploadResult(result);
 			setUploadStatus("success");
 			setUploadProgress(100);
