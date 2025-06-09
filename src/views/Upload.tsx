@@ -112,7 +112,7 @@ const Upload = () => {
 			const response = await fetch(url, {
 				method: "POST",
 				body: formData,
-				headers: headerData,
+				// headers: headerData,
 			});
 
 			await fetch(
