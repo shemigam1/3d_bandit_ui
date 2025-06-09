@@ -84,7 +84,7 @@ const Upload = () => {
 
 			// First get the signature from your backend
 			const signResponse = await fetch(
-				"https://threed-bandit-backend.onrender.com/3d/get-sign",
+				"https://threed-bandit-backend.onrender.com/api/v1/3d/get-sign",
 				// "http://localhost:1738/api/v1/3d/get-sign",
 				{
 					headers: headerData,
