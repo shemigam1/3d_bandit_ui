@@ -12,6 +12,7 @@ interface User {
 
 interface AuthContextType {
 	token: string;
+	id: string | null;
 	user: User | null;
 	loginAction: (data: { email: string; password: string }) => Promise<void>;
 	signupAction: (data: { email: string; password: string }) => Promise<void>;
@@ -26,6 +27,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [user, setUser] = useState(null);
+	const [id, setId] = useState(null);
 	const [token, setToken] = useState(localStorage.getItem("site") || "");
 	const navigate = useNavigate();
 
@@ -33,8 +35,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	const signupAction = async ({ email, password }: any) => {
 		try {
 			const response = await axios.post(
-				// "https://threed-bandit-backend.onrender.com/api/v1/auth/signup",
-				"http://localhost:1738/api/v1/auth/signup",
+				"https://threed-bandit-backend.onrender.com/api/v1/auth/signup",
+				// "http://localhost:1738/api/v1/auth/signup",
 				{ email, password }, // body as second argument
 				{
 					headers: {
@@ -42,11 +44,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 					},
 				}
 			);
-			console.log({ email, password });
+			// console.log({ email, password });
 
 			const res = response.data;
 			if (res) {
 				setUser(res.data.user);
+				setId(res.data.user.id);
 				setToken(res.data.token);
 				localStorage.setItem("site", res.data.token);
 				navigate("/");
@@ -58,12 +61,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		}
 	};
 	const loginAction = async ({ email, password }: any) => {
-		console.log({ email, password });
+		// console.log({ email, password });
 
 		try {
 			const response = await axios.post(
-				// "https://threed-bandit-backend.onrender.com/api/v1/auth/login",
-				"http://localhost:1738/api/v1/auth/login",
+				"https://threed-bandit-backend.onrender.com/api/v1/auth/login",
+				// "http://localhost:1738/api/v1/auth/login",
 				{ email, password }, // body as second argument
 				{
 					headers: {
@@ -72,10 +75,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 				}
 			);
 			const res = response.data;
-			console.log(res);
+			// console.log(res);
 
 			if (res) {
 				setUser(res.data.user);
+				setId(res.data.user.id);
 				setToken(res.data.token);
 				localStorage.setItem("site", res.data.token);
 				navigate("/");
@@ -99,7 +103,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	return (
 		<AuthContext.Provider
-			value={{ user, token, loginAction, signupAction, logOut }}
+			value={{ user, id, token, loginAction, signupAction, logOut }}
 		>
 			{children}
 		</AuthContext.Provider>

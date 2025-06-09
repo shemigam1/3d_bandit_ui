@@ -31,7 +31,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 				"--placeholder-color",
 				"#E4E4EF"
 			);
-			console.log("light mode");
+			// console.log("light mode");
 			setThemeIcon(iconSun);
 		} else {
 			document.documentElement.classList.remove("dark");
@@ -43,7 +43,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 				"--placeholder-color",
 				"#2A2B37"
 			);
-			console.log("dark mode");
+			// console.log("dark mode");
 
 			setThemeIcon(iconMoon);
 		}
