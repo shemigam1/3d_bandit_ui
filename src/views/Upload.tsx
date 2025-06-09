@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { FiUpload, FiX, FiCheck } from "react-icons/fi";
+import { useAuth } from "../utils/AuthContext";
 
 const Upload = () => {
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -11,6 +12,8 @@ const Upload = () => {
 	>("idle");
 	const [errorMessage, setErrorMessage] = useState<string>("");
 	const [uploadResult, setUploadResult] = useState<any>(null);
+
+	const auth = useAuth();
 
 	const headerData = {
 		"Content-Type": "application/json",
@@ -117,10 +120,15 @@ const Upload = () => {
 
 			await fetch(
 				"https://threed-bandit-backend.onrender.com/api/v1/3d/create-file",
-				// "http://localhost:1738/api/v1/3d/create-file",
 				{
 					method: "POST",
 					headers: headerData,
+					body: JSON.stringify({
+						createdAt: timestamp,
+						name: selectedFile.name,
+						fileUrl: uploadResult.url,
+						owner: auth?.id,
+					}),
 				}
 			);
 
