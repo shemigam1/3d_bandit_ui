@@ -10,7 +10,7 @@ function Header() {
 	// console.log(currentUrl);
 
 	return (
-		<header className="flex justify-end items-center w-full pt-[16px]  px-[225px] max-xl:px-[32px] max-sm:px-[16px] bg-neutral-100  dark:neutral-900">
+		<header className="flex justify-end items-center w-full pt-[16px]  px-[225px] max-xl:px-[32px] max-sm:px-[16px] bg-neutral-100  dark:bg-neutral-900">
 			<div className="flex items-center gap-3">
 				<Theme />
 				{(currentUrl === "/login" || currentUrl === "/home") && (

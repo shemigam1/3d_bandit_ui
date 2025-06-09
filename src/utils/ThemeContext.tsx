@@ -52,11 +52,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
 	return (
 		<ThemeContext.Provider value={{ theme, setTheme, themeIcon }}>
-			<div className=" transition-all duration-500  bg-neutral-100  dark:neutral-900  dark:text-Neutral-100 text-Neutral-900 flex flex-col gap-[30px] items-center ">
+			<div className=" transition-all duration-500  bg-neutral-100  dark:bg-neutral-900  dark:text-Neutral-100 text-Neutral-900 flex flex-col gap-[30px] items-center ">
 				{children}
 			</div>
 		</ThemeContext.Provider>
-		//  bg-[url(src/utils/bg-light-theme.png)]  dark:bg-[url(src/utils/bg-dark-theme.png)]
 	);
 }
 
