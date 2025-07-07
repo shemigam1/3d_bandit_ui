@@ -44,12 +44,14 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 					},
 				}
 			);
-			// console.log({ email, password });
 
 			const res = response.data;
+			// console.log(res);
+			// console.log(res.data._id);
+			// console.log(res.data.oken);
 			if (res) {
 				setUser(res.data.user);
-				setId(res.data.user.id);
+				setId(res.data.user._id);
 				setToken(res.data.token);
 				localStorage.setItem("site", res.data.token);
 				navigate("/");
@@ -57,7 +59,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 			}
 			throw new Error(res.message);
 		} catch (err) {
-			console.error(err);
+			// console.error(err);
+			throw new Error(err instanceof Error ? err.message : String(err));
 		}
 	};
 	const loginAction = async ({ email, password }: any) => {

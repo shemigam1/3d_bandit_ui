@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, type FormEvent } from "react";
 import google from "../assets/images/icons8-google.svg";
 import { useAuth } from "../utils/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 function Signup() {
 	const [email, setEmail] = useState("");
@@ -12,14 +13,25 @@ function Signup() {
 	const signUpWithEmailAndPassword = async (e: FormEvent) => {
 		e.preventDefault();
 		if (auth && email && password) {
-			// console.log({ email, password });
-
-			await auth.signupAction({ email, password });
+			try {
+				await auth.signupAction({ email, password });
+				notify("success");
+			} catch (error) {
+				notify("error");
+			}
 			return;
 		} else {
-			// alert("Please provide valid input");
+			notify("error");
 		}
 	};
+
+	function notify(status: string): void {
+		if (status === "success") {
+			toast("Success!");
+		} else {
+			toast("Something went wrong!");
+		}
+	}
 
 	return (
 		<main className="flex flex-col w-full h-screen items-center gap-[40px] max-xl:gap-[40px] pt-[32px] max-xl:pt-[16px] px-[225px] max-xl:px-[32px] max-sm:px-[16px]">
@@ -30,7 +42,7 @@ function Signup() {
 							Create an Account
 						</h1>
 
-						<div className="">
+						{/* <div className="">
 							<button
 								// onClick={signInWithGoogle}
 								className="flex justify-center gap-2 border dark:border-Neutral-100 border-Neutral-900 px-3 py-2 rounded-xl w-full"
@@ -43,7 +55,7 @@ function Signup() {
 
 						<div className="flex justify-center dark:text-Neutral-100 text-Neutral-900 text-2xl">
 							<p>OR</p>
-						</div>
+						</div> */}
 
 						<form
 							onSubmit={signUpWithEmailAndPassword}
@@ -87,8 +99,13 @@ function Signup() {
 									required
 								/>
 							</div>
-
-							<GenericBtn text={"Sign up"} type={"submit"} />
+							<button
+								type={"submit"}
+								className="bg-[#bf7df1] p-2 mt-3 text-white text-lg rounded-lg mx-1"
+							>
+								{"Sign Up"}
+							</button>
+							<ToastContainer />
 						</form>
 						<div className="flex justify-center">
 							<Link to="/login">
