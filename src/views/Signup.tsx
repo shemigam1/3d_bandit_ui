@@ -1,7 +1,7 @@
-import GenericBtn from "../components/btn/genericBtn";
+// import GenericBtn from "../components/btn/genericBtn";
 import { Link } from "react-router-dom";
 import { useState, type FormEvent } from "react";
-import google from "../assets/images/icons8-google.svg";
+// import google from "../assets/images/icons8-google.svg";
 import { useAuth } from "../utils/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 

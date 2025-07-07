@@ -1,4 +1,4 @@
-import GenericBtn from "../components/btn/genericBtn";
+// import GenericBtn from "../components/btn/genericBtn";
 import { Link } from "react-router-dom";
 import { useState, type FormEvent } from "react";
 // import google from "../assets/images/icons8-google.svg";
@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [isLoading, setIsLoading] = useState(false);
+	// const [isLoading, setIsLoading] = useState(false);
 
 	const auth = useAuth();
 	const loginWithEmailAndPassword = async (e: FormEvent) => {
